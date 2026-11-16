@@ -43,7 +43,6 @@ export default function Hero() {
             <span>your stresses</span>
           </span>
         </h1>
-        <p className="meaning eyebrow">{MOTTO.join(' · ')}</p>
         <a href={BOOKING_URL} className="btn solid">Call to book</a>
       </div>
 

@@ -1,4 +1,4 @@
-import { contact, phones } from '../data.js'
+import { BOOKING_URL, branches, contact, phones } from '../data.js'
 
 const Lines = ({ items }) =>
   items.map((line, i) => (
@@ -12,33 +12,53 @@ export default function Contact() {
   return (
     <section className="contact" id="contact">
       <h2 className="rv">visit us</h2>
-      <div className="cols">
+      <p className="eyebrow branches-sub rv d1">
+        {branches.length} branches · {branches.map((b) => b.name).join(' · ')}
+      </p>
+
+      <ul className="branches">
+        {branches.map((b, i) => (
+          <li key={b.name} className={`branch${b.featured ? ' featured' : ''} rv d${i + 1}`}>
+            <span className="branch-tag">{b.tag}</span>
+            <h3>{b.name}</h3>
+            <p className="caps branch-address"><Lines items={b.address} /></p>
+            <p className="branch-hours"><Lines items={b.hours} /></p>
+            {b.mapUrl ? (
+              <a className="branch-link" href={b.mapUrl} target="_blank" rel="noopener noreferrer">
+                Get directions ↗
+              </a>
+            ) : (
+              <a className="branch-link" href={BOOKING_URL}>Call for location →</a>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <div className="cols two">
         <div className="rv d1">
-          <h3>Location</h3>
-          <p className="caps"><Lines items={contact.address} /></p>
-        </div>
-        <div className="rv d2">
-          <h3>Hours</h3>
-          <p className="caps"><Lines items={contact.hours} /></p>
-        </div>
-        <div className="rv d3">
           <h3>Bookings</h3>
           <p className="caps">
-            {phones.map((p) => (
+            {phones.map((p, i) => (
               <span key={p.tel}>
                 <a href={`tel:${p.tel}`}>{p.display}</a>
-                <br />
+                {i < phones.length - 1 && <br />}
               </span>
             ))}
-            <a href={contact.facebook}>Facebook</a>
+          </p>
+        </div>
+        <div className="rv d2">
+          <h3>Follow us</h3>
+          <p className="caps">
+            <a href={contact.facebook} target="_blank" rel="noopener noreferrer">Facebook ↗</a>
           </p>
         </div>
       </div>
+
       <div className="foot">
-        <span>© {new Date().getFullYear()} LINDA by MCD Ellix Massage &amp; Spa</span>
+        <span>© {new Date().getFullYear()} MCD Ellix Massage &amp; Spa</span>
         <a href="#top">Back to top ↑</a>
       </div>
-      <p className="giant" aria-hidden="true">LINDA</p>
+      <p className="giant" aria-hidden="true">MCD Ellix</p>
     </section>
   )
 }

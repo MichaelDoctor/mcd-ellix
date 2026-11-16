@@ -1,5 +1,5 @@
-# linda
-LINDA by MCD ELLIX Massage and Spa — marketing site built with React + Vite.
+# MCD ELLIX
+MCD ELLIX Massage and Spa — marketing site built with React + Vite.
 
 ## Develop
 
@@ -22,4 +22,4 @@ To swap a placeholder arch graphic for a real photo, pass `src` to `<Frame>`, e.
 Every push to `master` builds and deploys via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
 One-time setup: on GitHub go to **Settings → Pages → Build and deployment → Source** and choose
-**GitHub Actions**. The site will be served at `https://<username>.github.io/linda/`.
+**GitHub Actions**. The site will be served at `https://<username>.github.io/mcd-ellix/`.

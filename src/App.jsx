@@ -7,7 +7,6 @@ import Offerings from './components/Offerings.jsx'
 import Benefits from './components/Benefits.jsx'
 import Signature from './components/Signature.jsx'
 import Manifesto from './components/Manifesto.jsx'
-import Testimonials from './components/Testimonials.jsx'
 import BookCall from './components/BookCall.jsx'
 import Contact from './components/Contact.jsx'
 
@@ -25,7 +24,6 @@ export default function App() {
         <Benefits />
         <Signature />
         <Manifesto />
-        <Testimonials />
         <BookCall />
         <Contact />
       </main>

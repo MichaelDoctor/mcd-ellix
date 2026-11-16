@@ -34,6 +34,7 @@ export default function Offerings() {
             <span className="name">
               <span className="t">{item.name}</span>
               {item.note && <span className="note">{item.note}</span>}
+              {item.desc && <span className="item-desc">{item.desc}</span>}
             </span>
             <span className="time">{item.time}</span>
             <span className="leader" aria-hidden="true" />
@@ -43,7 +44,7 @@ export default function Offerings() {
       </ol>
 
       <div className="off-cta rv">
-        <p className="eyebrow">Prices in Philippine pesos · Call to book an appointment</p>
+        <p className="eyebrow">Prices in Philippine pesos · Cash &amp; GCash accepted · Home service within Calaca</p>
         <a href={BOOKING_URL} className="btn">Call to book</a>
       </div>
     </section>

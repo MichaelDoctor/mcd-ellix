@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BOOKING_URL, navLinks } from '../data.js'
+import logo from '../assets/logo-mark.png'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -17,7 +18,9 @@ export default function Nav() {
   }, [open])
 
   return (
-    <header className={`nav${scrolled ? ' scrolled' : ''}${open ? ' open' : ''}`}>
+    <header
+      className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}
+    >
       <ul id="menu">
         {navLinks.map((l) => (
           <li key={l.href}>
@@ -27,9 +30,10 @@ export default function Nav() {
           </li>
         ))}
       </ul>
-      <a href="#top" className="logo" aria-label="LINDA by MCD Ellix home">
-        <b>LINDA</b>
-        <i>by MCD Ellix</i>
+      <a href="#top" className="logo" aria-label="MCD Ellix home">
+        <img src={logo} alt="" className="logo-badge" width="44" height="44" />
+        <b>MCD Ellix</b>
+        <i>Massage and Spa</i>
       </a>
       <div className="right">
         <a href={BOOKING_URL} className="btn">
@@ -37,7 +41,7 @@ export default function Nav() {
         </a>
         <button
           className="menu-btn"
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="menu"
           onClick={() => setOpen((o) => !o)}
@@ -47,5 +51,5 @@ export default function Nav() {
         </button>
       </div>
     </header>
-  )
+  );
 }
