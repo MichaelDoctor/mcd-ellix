@@ -5,10 +5,9 @@ import storefront from '../assets/storefront.jpg'
 export default function Story() {
   return (
     <section className="story" id="about">
-      <div className="split">
+      <div className="split rev">
         <Frame
           variant="f2"
-          round
           src={storefront}
           alt="The MCD Ellix Massage and Spa storefront at night, glowing with warm lights"
         />
@@ -25,12 +24,12 @@ export default function Story() {
           </p>
         </div>
       </div>
-      <div className="split rev">
+      <div className="split">
         <Frame
           variant="f1"
+          round
           src={roomPrepared}
           alt="Massage bed prepared with a folded MCD Ellix towel, rolled towel flower and eye mask"
-          tag="every detail, prepared for you"
         />
         <div>
           <p className="eyebrow accent rv">Our practice</p>
@@ -38,10 +37,10 @@ export default function Story() {
             Made for <span className="script">your comfort</span>
           </h2>
           <p className="caps rv d2">
-            At MCD Ellix, your session is all about you. Choose from
-            Swedish, Shiatsu and traditional Filipino Hilot massage, or add
-            Ventosa, hot stone, ear candling, body scrubs and salting. Our
-            private rooms are warm, softly lit and ready the moment you arrive.
+            At MCD Ellix, your session is all about you. Choose from Swedish,
+            Shiatsu and traditional Filipino Hilot massage, or add Ventosa, hot
+            stone, ear candling, body scrubs and salting. Our private rooms are
+            warm, softly lit and ready the moment you arrive.
           </p>
         </div>
       </div>
