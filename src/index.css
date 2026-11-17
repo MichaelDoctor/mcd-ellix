@@ -272,7 +272,7 @@ h1,h2,h3{font-weight:400;margin:0;line-height:.95}
   .sigils{grid-template-columns:repeat(3,1fr);row-gap:44px}
   .split,.tribe{grid-template-columns:1fr}
   .sig-cards{grid-template-columns:1fr}
-  .split.rev .frame{order:0}
+  .split .frame{order:2} /* stacked: text first, frame second */
   .frame{max-width:460px;width:100%;margin:0 auto}
   .cards{grid-template-columns:1fr}
   .card:nth-child(2){transform:none}
