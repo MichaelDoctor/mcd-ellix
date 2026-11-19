@@ -123,8 +123,8 @@ h1,h2,h3{font-weight:400;margin:0;line-height:.95}
 .hero h1 .script{font-size:1.04em;color:var(--sand-2)}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
 .hero h1 .line > span{display:inline-block;transform:translateY(105%);animation:rise 1.3s var(--ease) forwards}
-.hero h1 .line:nth-child(2) > span{animation-delay:.15s}
-.hero h1 .line:nth-child(3) > span{animation-delay:.3s}
+.hero h1 .line:nth-child(3) > span{animation-delay:.15s}
+.hero h1 .line:nth-child(4) > span{animation-delay:.3s}
 @keyframes rise{to{transform:translateY(0)}}
 .hero .meaning{margin:2.2rem auto 2.4rem;max-width:520px;color:var(--sand-2);opacity:0;animation:fade 1.2s .8s var(--ease) forwards}
 .hero .btn{opacity:0;animation:fade 1.2s 1s var(--ease) forwards}
@@ -253,8 +253,9 @@ h1,h2,h3{font-weight:400;margin:0;line-height:.95}
 .giant{font-family:var(--display);font-size:clamp(48px,15vw,250px);line-height:.85;white-space:nowrap;text-align:center;letter-spacing:.06em;color:transparent;-webkit-text-stroke:1px rgba(207,193,165,.28);margin:60px 0 0;user-select:none}
 
 /* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(36px);transition:opacity 1.2s var(--ease), transform 1.2s var(--ease)}
-.rv.in{opacity:1;transform:none}
+/* hidden until revealed only when JS runs (html.js), so no-JS crawlers see content */
+:where(.js) .rv{opacity:0;transform:translateY(36px);transition:opacity 1.2s var(--ease), transform 1.2s var(--ease)}
+:where(.js) .rv.in{opacity:1;transform:none}
 .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}.rv.d4{transition-delay:.48s}
 
 :focus-visible{outline:1px solid var(--ember);outline-offset:4px}
@@ -289,7 +290,7 @@ h1,h2,h3{font-weight:400;margin:0;line-height:.95}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
+  :where(.js) .rv{opacity:1;transform:none}
   .hero h1 .line > span{transform:none}
   .hero .meaning,.hero .btn{opacity:1}
 }
@@ -378,3 +379,9 @@ h1,h2,h3{font-weight:400;margin:0;line-height:.95}
 .branch-link:hover{color:var(--cream);border-color:var(--sand)}
 .cols.two{grid-template-columns:repeat(2,1fr);max-width:760px;text-align:center}
 @media (max-width:900px){.branches{grid-template-columns:1fr}.cols.two{grid-template-columns:1fr}}
+
+/* ---------- SEO wording ---------- */
+.hero h1 .h1-eyebrow{display:block;margin-bottom:1.4rem;font-family:var(--body);font-weight:400;font-size:clamp(10px,1.1vw,12px);
+  letter-spacing:.32em;line-height:1.8;text-transform:uppercase;color:var(--sand-2);text-shadow:none;opacity:0;animation:fade 1.2s .6s var(--ease) forwards}
+.branches-intro{max-width:56ch;margin:0 auto 18px;text-align:center;font-size:13.5px;line-height:1.8;letter-spacing:.04em;color:rgba(243,236,224,.7)}
+@media (prefers-reduced-motion:reduce){.hero h1 .h1-eyebrow{opacity:1}}

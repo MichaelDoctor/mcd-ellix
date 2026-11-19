@@ -1,6 +1,6 @@
 import Frame from './Frame.jsx'
-import roomPrepared from '../assets/room-prepared.jpg'
-import storefront from '../assets/storefront.jpg'
+import roomPrepared from '../assets/room-prepared.webp'
+import storefront from '../assets/storefront.webp'
 
 export default function Story() {
   return (
@@ -9,7 +9,9 @@ export default function Story() {
         <Frame
           variant="f2"
           src={storefront}
-          alt="The MCD Ellix Massage and Spa storefront at night, glowing with warm lights"
+          width={1600}
+          height={1174}
+          alt="The MCD Ellix Massage and Spa storefront in Calaca, Batangas at night, glowing with warm lights"
         />
         <div>
           <p className="eyebrow accent rv">Our promise</p>
@@ -29,7 +31,9 @@ export default function Story() {
           variant="f1"
           round
           src={roomPrepared}
-          alt="Massage bed prepared with a folded MCD Ellix towel, rolled towel flower and eye mask"
+          width={1050}
+          height={1400}
+          alt="Private massage room at MCD Ellix Massage and Spa with a prepared bed, towel flower and eye mask"
         />
         <div>
           <p className="eyebrow accent rv">Our practice</p>

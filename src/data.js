@@ -1,6 +1,9 @@
 // Site content lives here so copy can be edited without touching layout.
 // Source: "services and prices" menu card and "main" booking poster.
 
+export const SITE_URL = 'https://mcdellixmassageandspa.com/'
+export const BUSINESS_NAME = 'MCD Ellix Massage and Spa'
+
 export const TAGLINE = 'Your spa where you can relax and release your stresses.'
 export const MOTTO = ['Relax', 'Rejuvenate', 'Restore']
 
@@ -34,7 +37,7 @@ const EAR_CANDLING =
 
 // Add-ons for the MCD All-In Signature Massage.
 export const addOns = [
-  { name: 'Ventosa', desc: VENTOSA },
+  { name: 'Ventosa (Cupping)', desc: VENTOSA },
   { name: 'Hot Stone', desc: HOT_STONE },
   { name: 'Ear Candling', desc: EAR_CANDLING },
 ]
@@ -72,7 +75,7 @@ export const menu = [
     id: 'packages',
     label: 'Packages',
     items: [
-      { name: 'Massage with Ventosa', time: '1.5 hr', price: 800, desc: VENTOSA },
+      { name: 'Massage with Ventosa (Cupping)', time: '1.5 hr', price: 800, desc: VENTOSA },
       { name: 'Massage with Body Scrub', time: '1.5 hr', price: 1100 },
     ],
   },
@@ -100,22 +103,35 @@ const mapsLink = (q) => `https://www.google.com/maps/search/?api=1&query=${encod
 export const branches = [
   {
     name: 'Calaca',
+    heading: 'Calaca, Batangas',
     tag: 'Main branch · Walk-ins welcome',
     featured: true,
+    // Search-engine details (src/seo.js). Fill `geo` from the Google Business Profile pin.
+    postal: { street: '002 Igualdad St., Poblacion 1', locality: 'Calaca City', region: 'Batangas', postalCode: '4212' },
+    openingHours: { opens: '13:00', closes: '23:59' },
+    homeServiceArea: 'Calaca',
+    geo: null,
     address: ['002 Igualdad St., Poblacion 1', 'Calaca City, Batangas'],
     hours: ['Open every day · 1:00 PM – 12:00 AM', 'Earlier than 1 PM? Call for an appointment'],
     mapUrl: mapsLink('002 Igualdad St., Poblacion 1, Calaca City, Batangas'),
   },
   {
     name: 'Tuy',
+    heading: 'Tuy, Batangas',
     tag: 'By appointment only',
+    postal: { street: 'Lourdes Resort and Restaurant, Brgy. Luntal', locality: 'Tuy', region: 'Batangas', postalCode: '4214' },
+    geo: null,
     address: ['Inside Lourdes Resort and Restaurant', 'Brgy. Luntal, Tuy, Batangas'],
     hours: ['Call ahead to book your session'],
     mapUrl: mapsLink('Lourdes Resort and Restaurant, Luntal, Tuy, Batangas'),
   },
   {
     name: 'Tagaytay',
+    heading: 'Tagaytay',
     tag: 'By appointment only',
+    // Street address intentionally hidden (appointment-only, service-area listing).
+    postal: { locality: 'Tagaytay City', region: 'Cavite', postalCode: '4120' },
+    geo: null,
     address: ['Tagaytay City'],
     hours: ['Call to book and get directions'],
     mapUrl: null,

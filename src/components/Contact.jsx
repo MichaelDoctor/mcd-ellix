@@ -11,7 +11,11 @@ const Lines = ({ items }) =>
 export default function Contact() {
   return (
     <section className="contact" id="contact">
-      <h2 className="rv">visit us</h2>
+      <h2 className="rv">visit our branches</h2>
+      <p className="branches-intro rv d1">
+        Looking for a massage in Calaca or Tuy, Batangas, or in Tagaytay? Walk in at our Calaca branch, book an
+        appointment at any branch, or get home service within Calaca.
+      </p>
       <p className="eyebrow branches-sub rv d1">
         {branches.length} branches · {branches.map((b) => b.name).join(' · ')}
       </p>
@@ -20,7 +24,7 @@ export default function Contact() {
         {branches.map((b, i) => (
           <li key={b.name} className={`branch${b.featured ? ' featured' : ''} rv d${i + 1}`}>
             <span className="branch-tag">{b.tag}</span>
-            <h3>{b.name}</h3>
+            <h3>{b.heading}</h3>
             <p className="caps branch-address"><Lines items={b.address} /></p>
             <p className="branch-hours"><Lines items={b.hours} /></p>
             {b.mapUrl ? (
@@ -55,7 +59,7 @@ export default function Contact() {
       </div>
 
       <div className="foot">
-        <span>© {new Date().getFullYear()} MCD Ellix Massage &amp; Spa</span>
+        <span suppressHydrationWarning>© {new Date().getFullYear()} MCD Ellix Massage &amp; Spa</span>
         <a href="#top">Back to top ↑</a>
       </div>
       <p className="giant" aria-hidden="true">MCD Ellix</p>

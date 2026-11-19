@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mcdellixmassageandspa.com/sitemap.xml
