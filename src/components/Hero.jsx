@@ -1,5 +1,5 @@
 import { BOOKING_URL, MOTTO } from '../data.js'
-import roomCandle from '../assets/room-candle.jpg'
+import roomCandle from '../assets/room-candle.webp'
 
 const trunks = [
   [40, 0, 34], [170, 60, 22], [300, 20, 46],
@@ -27,12 +27,20 @@ export default function Hero() {
         </svg>
         <div className="mist" />
       </div>
-      <div className="hero-arch has-photo" aria-hidden="true">
-        <img src={roomCandle} alt="" />
+      <div className="hero-arch has-photo">
+        <img
+          src={roomCandle}
+          alt="Candlelit massage room at MCD Ellix Massage and Spa"
+          width="1050"
+          height="1400"
+          fetchPriority="high"
+          decoding="async"
+        />
       </div>
 
       <div className="hero-content">
         <h1 className="display">
+          <span className="h1-eyebrow">MCD Ellix Massage &amp; Spa · Calaca · Tuy · Tagaytay</span>
           <span className="line">
             <span>Your spa where you</span>
           </span>

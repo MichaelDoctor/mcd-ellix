@@ -9,7 +9,7 @@ export default function Offerings() {
     <section className="offerings" id="services">
       <div className="off-head">
         <h2 className="display rv">
-          Services <span className="script">&amp; prices</span>
+          Massage services <span className="script">&amp; prices</span>
         </h2>
         <div className="tabs rv d1" role="tablist" aria-label="Service categories">
           {menu.map((m) => (

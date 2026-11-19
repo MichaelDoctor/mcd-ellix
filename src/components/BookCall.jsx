@@ -1,5 +1,5 @@
 import { homeService, payments, phones, visitOptions } from '../data.js'
-import logo from '../assets/logo-badge.png'
+import logo from '../assets/logo-badge.webp'
 
 export default function BookCall() {
   return (
