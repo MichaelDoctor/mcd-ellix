@@ -11,9 +11,19 @@ export const phones = [
   { display: '0995-4600743', tel: '+639954600743' },
 ]
 
+// Ways to book. messenger.com/t/<page id> is claimed by the Messenger app on
+// iPhone/Android, so it opens the app straight to a chat with the Facebook page
+// (m.me links go through a deprecated Facebook redirect that fails on iOS).
+// 104259025901747 is the page's Messenger ID (what m.me/100089505370077 resolves to).
+export const booking = {
+  call: `tel:${phones[0].tel}`,
+  text: `sms:${phones[0].tel}`,
+  messenger: 'https://www.messenger.com/t/104259025901747',
+}
+
 // Branch list is near the bottom of this file.
-// No online booking yet — "Book" buttons call the main number.
-export const BOOKING_URL = `tel:${phones[0].tel}`
+// "Book" buttons jump to the booking section, which offers call, text and Messenger.
+export const BOOKING_URL = '#book'
 
 export const navLinks = [
   { href: '#about', label: 'About' },
@@ -46,15 +56,16 @@ export const menu = [
   {
     id: 'massage',
     label: 'Massage',
+    note: 'Add mint oil to any massage for an additional ₱50.',
     items: [
       { name: 'MCD All-In Signature Massage', time: '1 hr', price: 1000, note: 'Choose Ventosa, Hot Stone or Ear Candling' },
       { name: 'Massage with Body Scrub & Salting', time: '1.5 hr', price: 2000 },
       { name: 'Massage with Body Stretching', time: '1.5 hr', price: 800 },
-      { name: 'Swedish Massage', time: '1 hr', price: 500, desc: SWEDISH },
-      { name: 'Swedish Massage', time: '1.5 hr', price: 750, desc: SWEDISH },
+      { name: 'Swedish Massage', options: [{ time: '1 hr', price: 500 }, { time: '1.5 hr', price: 750 }], desc: SWEDISH },
       { name: 'Oil Shiatsu Massage', time: '1 hr', price: 700, desc: SHIATSU },
-      { name: 'Filipino Style / Hilot', time: '1 hr', price: 600, desc: HILOT },
-      { name: 'Filipino Style / Hilot', time: '1.5 hr', price: 900, desc: HILOT },
+      { name: 'Filipino Style / Hilot', options: [{ time: '1 hr', price: 600 }, { time: '1.5 hr', price: 900 }], desc: HILOT },
+      { name: 'Ventosa (Cupping)', price: 300, desc: VENTOSA },
+      { name: 'Hot Stone', price: 400, desc: HOT_STONE },
       { name: 'Foot Massage', time: '30 min', price: 300 },
       { name: 'Head Massage', time: '30 min', price: 300 },
       { name: 'Hand Massage', time: '30 min', price: 300 },
@@ -82,6 +93,10 @@ export const menu = [
 ]
 
 export const peso = (n) => `₱${n.toLocaleString('en-PH')}`
+
+// A service is either { time, price } or { options: [{ time, price }, …] } for
+// services offered in more than one length. This flattens both shapes.
+export const itemOptions = (item) => item.options ?? [{ time: item.time, price: item.price }]
 
 export const benefits = [
   {
