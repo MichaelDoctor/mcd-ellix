@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { booking, contact } from './data.js'
 
 export const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -42,4 +43,27 @@ export function useParallax(strength = 40) {
     return () => cancelAnimationFrame(raf)
   }, [strength])
   return ref
+}
+
+/** True on phones and tablets (iPhone, iPad, Android); false on computers. */
+export function isMobileDevice() {
+  if (typeof navigator === 'undefined') return true
+  const ua = navigator.userAgent || ''
+  if (/Android|iPhone|iPad|iPod|Mobile/i.test(ua)) return true
+  // iPadOS reports itself as a Mac; tell them apart by touch support.
+  return /Macintosh/.test(ua) && navigator.maxTouchPoints > 1
+}
+
+/**
+ * Where "Messenger" links should go. Phones open the Messenger app via
+ * messenger.com/t/…; computers can't open a page chat that way, so they get
+ * the Facebook page (which has its own Message button).
+ * The prerendered HTML uses the Messenger link; computers switch after load.
+ */
+export function useMessengerLink() {
+  const [onDesktop, setOnDesktop] = useState(false)
+  useEffect(() => {
+    if (!isMobileDevice()) setOnDesktop(true)
+  }, [])
+  return { href: onDesktop ? contact.facebook : booking.messenger, onDesktop }
 }

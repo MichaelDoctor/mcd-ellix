@@ -29,23 +29,38 @@ export default function Offerings() {
 
       <ol className="price-list" id="menu-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} key={tab}>
         {active.items.map((item, i) => (
-          <li key={`${item.name}-${item.time}`} style={{ animationDelay: `${i * 45}ms` }}>
+          <li key={item.name} className={item.options ? 'multi' : undefined} style={{ animationDelay: `${i * 45}ms` }}>
             <span className="n">{String(i + 1).padStart(2, '0')}</span>
             <span className="name">
               <span className="t">{item.name}</span>
               {item.note && <span className="note">{item.note}</span>}
               {item.desc && <span className="item-desc">{item.desc}</span>}
             </span>
-            <span className="time">{item.time}</span>
-            <span className="leader" aria-hidden="true" />
-            <span className="price">{peso(item.price)}</span>
+            {item.options ? (
+              <span className="opts">
+                {item.options.map((o) => (
+                  <span className="opt" key={o.time}>
+                    <span className="time">{o.time}</span>
+                    <span className="leader" aria-hidden="true" />
+                    <span className="price">{peso(o.price)}</span>
+                  </span>
+                ))}
+              </span>
+            ) : (
+              <>
+                <span className="time">{item.time}</span>
+                <span className="leader" aria-hidden="true" />
+                <span className="price">{peso(item.price)}</span>
+              </>
+            )}
           </li>
         ))}
       </ol>
+      {active.note && <p className="menu-note">{active.note}</p>}
 
       <div className="off-cta rv">
         <p className="eyebrow">Prices in Philippine pesos · Cash &amp; GCash accepted · Home service within Calaca</p>
-        <a href={BOOKING_URL} className="btn">Call to book</a>
+        <a href={BOOKING_URL} className="btn">Book now</a>
       </div>
     </section>
   )

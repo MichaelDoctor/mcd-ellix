@@ -1,4 +1,5 @@
-import { BOOKING_URL, branches, contact, phones } from '../data.js'
+import { BOOKING_URL, booking, branches, contact, phones } from '../data.js'
+import { useMessengerLink } from '../hooks.js'
 
 const Lines = ({ items }) =>
   items.map((line, i) => (
@@ -9,6 +10,7 @@ const Lines = ({ items }) =>
   ))
 
 export default function Contact() {
+  const messenger = useMessengerLink()
   return (
     <section className="contact" id="contact">
       <h2 className="rv">visit our branches</h2>
@@ -32,7 +34,7 @@ export default function Contact() {
                 Get directions ↗
               </a>
             ) : (
-              <a className="branch-link" href={BOOKING_URL}>Call for location →</a>
+              <a className="branch-link" href={BOOKING_URL}>Contact us for location →</a>
             )}
           </li>
         ))}
@@ -42,12 +44,17 @@ export default function Contact() {
         <div className="rv d1">
           <h3>Bookings</h3>
           <p className="caps">
-            {phones.map((p, i) => (
+            <a href={messenger.href} target="_blank" rel="noopener noreferrer">
+              {messenger.onDesktop ? 'Message us on Facebook ↗' : 'Message us on Messenger ↗'}
+            </a>
+            <br />
+            {phones.map((p) => (
               <span key={p.tel}>
-                <a href={`tel:${p.tel}`}>{p.display}</a>
-                {i < phones.length - 1 && <br />}
+                Call <a href={`tel:${p.tel}`}>{p.display}</a>
+                <br />
               </span>
             ))}
+            <a href={booking.text}>Send a text</a>
           </p>
         </div>
         <div className="rv d2">

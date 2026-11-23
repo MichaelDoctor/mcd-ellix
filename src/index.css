@@ -385,3 +385,25 @@ h1,h2,h3{font-weight:400;margin:0;line-height:.95}
   letter-spacing:.32em;line-height:1.8;text-transform:uppercase;color:var(--sand-2);text-shadow:none;opacity:0;animation:fade 1.2s .6s var(--ease) forwards}
 .branches-intro{max-width:56ch;margin:0 auto 18px;text-align:center;font-size:13.5px;line-height:1.8;letter-spacing:.04em;color:rgba(243,236,224,.7)}
 @media (prefers-reduced-motion:reduce){.hero h1 .h1-eyebrow{opacity:1}}
+
+/* ---------- services with more than one length ---------- */
+.price-list li.multi .opts{grid-column:3 / -1;display:grid;gap:12px;align-self:start;padding-top:4px}
+.price-list .opt{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:0 18px}
+@media (max-width:700px){
+  .price-list li.multi .opts{grid-column:2 / -1;grid-row:2;gap:6px;padding-top:10px}
+  .price-list .opt{grid-template-columns:1fr auto;gap:0 12px}
+  .price-list .opt .time,.price-list .opt .price{grid-column:auto;grid-row:auto}
+}
+
+/* ---------- booking options ---------- */
+.book-actions{display:flex;flex-wrap:wrap;gap:10px;margin:1.4rem 0 .9rem}
+.book-fallback{margin:0;font-size:12.5px;letter-spacing:.04em;color:rgba(243,236,224,.6)}
+.book-fallback a{color:var(--sand);border-bottom:1px solid var(--line);transition:border-color .3s,color .3s}
+.book-fallback a:hover{color:var(--cream);border-color:var(--sand)}
+.book-actions .btn{gap:.7em;padding:1em 1.6em}
+.book-actions svg{flex:none}
+@media (max-width:480px){.book-actions .btn{flex:1 1 100%;justify-content:center}}
+
+/* ---------- per-tab menu note (e.g. mint oil add-on) ---------- */
+.menu-note{max-width:1240px;margin:18px auto 0;padding-left:74px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ember)}
+@media (max-width:700px){.menu-note{padding-left:54px;line-height:1.8}}

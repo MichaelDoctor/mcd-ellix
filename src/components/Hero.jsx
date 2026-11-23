@@ -51,7 +51,7 @@ export default function Hero() {
             <span>your stresses</span>
           </span>
         </h1>
-        <a href={BOOKING_URL} className="btn solid">Call to book</a>
+        <a href={BOOKING_URL} className="btn solid">Book now</a>
       </div>
 
       <div className="scroll-cue" aria-hidden="true">
