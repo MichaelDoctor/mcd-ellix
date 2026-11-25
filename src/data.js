@@ -18,6 +18,8 @@ export const phones = [
 export const booking = {
   call: `tel:${phones[0].tel}`,
   text: `sms:${phones[0].tel}`,
+  // Text with a message already typed. "?&body=" works on both iPhone and Android.
+  textWith: (msg) => `sms:${phones[0].tel}?&body=${encodeURIComponent(msg)}`,
   messenger: 'https://www.messenger.com/t/104259025901747',
 }
 
@@ -52,7 +54,9 @@ export const addOns = [
   { name: 'Ear Candling', desc: EAR_CANDLING },
 ]
 
-export const menu = [
+// Price lists differ per branch. Each branch below points at one of these
+// (or has none, e.g. Tagaytay: prices on inquiry).
+const calacaMenu = [
   {
     id: 'massage',
     label: 'Massage',
@@ -66,6 +70,7 @@ export const menu = [
       { name: 'Filipino Style / Hilot', options: [{ time: '1 hr', price: 600 }, { time: '1.5 hr', price: 900 }], desc: HILOT },
       { name: 'Ventosa (Cupping)', price: 300, desc: VENTOSA },
       { name: 'Hot Stone', price: 400, desc: HOT_STONE },
+      { name: 'Hot Compress', price: 100 },
       { name: 'Foot Massage', time: '30 min', price: 300 },
       { name: 'Head Massage', time: '30 min', price: 300 },
       { name: 'Hand Massage', time: '30 min', price: 300 },
@@ -88,6 +93,55 @@ export const menu = [
     items: [
       { name: 'Massage with Ventosa (Cupping)', time: '1.5 hr', price: 800, desc: VENTOSA },
       { name: 'Massage with Body Scrub', time: '1.5 hr', price: 1100 },
+    ],
+  },
+]
+
+// Tuy branch (inside Lourdes Resort and Restaurant). Source: Tuy price list poster.
+const tuyMenu = [
+  {
+    id: 'massage',
+    label: 'Massage',
+    note: 'Add mint oil to any massage for an additional ₱50.',
+    items: [
+      { name: 'Massage with Stretching', price: 1000 },
+      { name: 'Full Body Massage', options: [{ time: '1 hr', price: 600 }, { time: '1.5 hr', price: 900 }] },
+      { name: 'Filipino Style / Hilot', options: [{ time: '1 hr', price: 700 }, { time: '1.5 hr', price: 1000 }], desc: HILOT },
+      { name: 'Hot Stone', price: 400, desc: HOT_STONE },
+      { name: 'Hot Compress', price: 100 },
+      { name: 'Back Massage', time: '30 min', price: 400 },
+      { name: 'Foot Massage', time: '30 min', price: 400 },
+      { name: 'Head Massage', time: '30 min', price: 400 },
+      { name: 'Hand Massage', time: '30 min', price: 400 },
+    ],
+  },
+  {
+    id: 'body',
+    label: 'Body Treatments',
+    items: [
+      { name: 'Foot Scrub / Foot Spa', price: 400 },
+      { name: 'Body Wash', price: 300 },
+      { name: 'Body Scrub', price: 900 },
+      { name: 'Body Salting', price: 900 },
+      { name: 'Ear Candling', price: 300, desc: EAR_CANDLING },
+      { name: 'Foot Spa with Reflex', price: 600 },
+    ],
+  },
+  {
+    id: 'packages',
+    label: 'Packages',
+    items: [
+      {
+        name: 'MCD Ellix Signature Massage',
+        price: 1200,
+        note: 'Choose Ventosa, Hot Compress or Ear Candling',
+        desc: 'Semi-Thai pampering deep tissue massage.',
+      },
+      { name: 'Semi-Stretching with Moxibustion', price: 1000 },
+      { name: 'Massage with Plastic Cup Suction', price: 900 },
+      { name: 'Massage with Hot Stone', time: '1.5 hr', price: 1400, desc: HOT_STONE },
+      { name: 'Massage with Ventosa', price: 1000, desc: VENTOSA },
+      { name: 'Massage with Body Scrub', price: 1700 },
     ],
   },
 ]
@@ -118,6 +172,8 @@ const mapsLink = (q) => `https://www.google.com/maps/search/?api=1&query=${encod
 export const branches = [
   {
     name: 'Calaca',
+    slug: 'calaca',
+    menu: calacaMenu,
     heading: 'Calaca, Batangas',
     tag: 'Main branch · Walk-ins welcome',
     featured: true,
@@ -132,6 +188,8 @@ export const branches = [
   },
   {
     name: 'Tuy',
+    slug: 'tuy',
+    menu: tuyMenu,
     heading: 'Tuy, Batangas',
     tag: 'By appointment only',
     postal: { street: 'Lourdes Resort and Restaurant, Brgy. Luntal', locality: 'Tuy', region: 'Batangas', postalCode: '4214' },
@@ -142,6 +200,9 @@ export const branches = [
   },
   {
     name: 'Tagaytay',
+    slug: 'tagaytay',
+    // No published price list: visitors message, call or text to ask.
+    menu: null,
     heading: 'Tagaytay',
     tag: 'By appointment only',
     // Street address intentionally hidden (appointment-only, service-area listing).

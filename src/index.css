@@ -407,3 +407,25 @@ h1,h2,h3{font-weight:400;margin:0;line-height:.95}
 /* ---------- per-tab menu note (e.g. mint oil add-on) ---------- */
 .menu-note{max-width:1240px;margin:18px auto 0;padding-left:74px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ember)}
 @media (max-width:700px){.menu-note{padding-left:54px;line-height:1.8}}
+
+/* ---------- branch switch (per-branch price lists) ---------- */
+.offerings{position:relative}
+.offerings .anchor{position:absolute;top:0;left:0;width:0;height:0}
+.off-controls{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+.branch-switch{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.branch-switch-label{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ember);margin-right:10px}
+.branch-switch button{font:inherit;font-family:var(--script);font-style:italic;font-size:20px;line-height:1;
+  color:rgba(243,236,224,.55);background:none;border:0;border-bottom:1px solid transparent;padding:.3em .5em;cursor:pointer;
+  transition:color .4s var(--ease),border-color .4s var(--ease)}
+.branch-switch button:hover{color:var(--cream)}
+.branch-switch button[aria-pressed="true"]{color:var(--sand);border-color:var(--sand)}
+.inquire{max-width:1240px;margin:0 auto;padding:clamp(36px,5vw,56px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  animation:fade .7s var(--ease) both}
+.inquire .eyebrow{color:var(--ember);margin:0 0 1rem}
+.inquire h3{font-family:var(--display);text-transform:uppercase;font-weight:400;font-size:clamp(28px,3.6vw,48px);line-height:1.05;margin:0 0 1rem}
+.inquire p:not(.eyebrow){color:rgba(243,236,224,.75);max-width:54ch;margin:0}
+@media (max-width:700px){
+  .off-controls{align-items:flex-start;width:100%}
+}
+.branch-links{margin-top:auto;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.branch-links .branch-link{margin-top:0}

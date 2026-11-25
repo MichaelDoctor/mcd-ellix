@@ -1,13 +1,13 @@
 // Builds schema.org structured data (JSON-LD) from the same content the page
 // shows, so Google sees matching business details, hours and prices.
 // Injected into <head> at build time by scripts/prerender.mjs.
-import { BUSINESS_NAME, SITE_URL, branches, booking, contact, itemOptions, menu, payments, phones, peso } from './data.js'
+import { BUSINESS_NAME, SITE_URL, branches, booking, contact, itemOptions, payments, phones, peso } from './data.js'
 
 const ORG_ID = `${SITE_URL}#organization`
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-const allPrices = menu.flatMap((cat) => cat.items.flatMap((item) => itemOptions(item).map((o) => o.price)))
-const priceRange = `${peso(Math.min(...allPrices))} – ${peso(Math.max(...allPrices))}`
+const pricesOf = (menu) => menu.flatMap((cat) => cat.items.flatMap((item) => itemOptions(item).map((o) => o.price)))
+const rangeOf = (prices) => `${peso(Math.min(...prices))} – ${peso(Math.max(...prices))}`
 
 const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
@@ -31,7 +31,7 @@ function branchNode(b) {
     url: SITE_URL,
     image: `${SITE_URL}og-image.jpg`,
     telephone: phones[0].tel,
-    priceRange,
+    ...(b.menu && { priceRange: rangeOf(pricesOf(b.menu)) }),
     currenciesAccepted: 'PHP',
     paymentAccepted: payments.join(', '),
     address: address(b.postal),
@@ -47,13 +47,15 @@ function branchNode(b) {
       },
     }),
     areaServed: { '@type': 'City', name: b.homeServiceArea || b.postal.locality },
+    ...(b.menu && { hasOfferCatalog: offerCatalog(b) }),
   }
 }
 
-const offerCatalog = {
+// Each branch lists only its own prices (Calaca and Tuy differ; Tagaytay is on inquiry).
+const offerCatalog = (b) => ({
   '@type': 'OfferCatalog',
-  name: 'Massage and spa services',
-  itemListElement: menu.map((cat) => ({
+  name: `Massage and spa services – ${b.name}`,
+  itemListElement: b.menu.map((cat) => ({
     '@type': 'OfferCatalog',
     name: cat.label,
     itemListElement: cat.items.flatMap((item) =>
@@ -69,7 +71,7 @@ const offerCatalog = {
       })),
     ),
   })),
-}
+})
 
 export function buildJsonLd() {
   return {
@@ -90,7 +92,6 @@ export function buildJsonLd() {
           url: booking.messenger,
           availableLanguage: ['en', 'fil'],
         },
-        hasOfferCatalog: offerCatalog,
       },
       ...branches.map(branchNode),
     ],
