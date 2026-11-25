@@ -29,13 +29,18 @@ export default function Contact() {
             <h3>{b.heading}</h3>
             <p className="caps branch-address"><Lines items={b.address} /></p>
             <p className="branch-hours"><Lines items={b.hours} /></p>
-            {b.mapUrl ? (
-              <a className="branch-link" href={b.mapUrl} target="_blank" rel="noopener noreferrer">
-                Get directions ↗
+            <span className="branch-links">
+              <a className="branch-link" href={`#prices-${b.slug}`}>
+                {b.menu ? `See ${b.name} prices →` : 'Ask about prices →'}
               </a>
-            ) : (
-              <a className="branch-link" href={BOOKING_URL}>Contact us for location →</a>
-            )}
+              {b.mapUrl ? (
+                <a className="branch-link" href={b.mapUrl} target="_blank" rel="noopener noreferrer">
+                  Get directions ↗
+                </a>
+              ) : (
+                <a className="branch-link" href={BOOKING_URL}>Contact us for location →</a>
+              )}
+            </span>
           </li>
         ))}
       </ul>
